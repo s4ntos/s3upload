@@ -17,6 +17,7 @@ import (
 	// AWS SDK 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -53,11 +54,14 @@ func main() {
 		fmt.Println(conf)
 		log.Println ("Updates and reloads done")
 	})
-	// log.Println("Configurations loaded", conf)
+	log.Println("Configurations loaded", conf)
 	// End - Read All configurations 
 	log.Println("Preparing AWS session")
 	// Create a single AWS session (we can re use this if we're uploading many files)
-	s, err := session.NewSession(&aws.Config{Region: aws.String(conf.Region)})
+	s, err := session.NewSession(&aws.Config{
+		Region: aws.String(conf.Region),
+		Credentials: credentials.NewStaticCredentials(conf.Access_key, conf.Secret_key, ""),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
