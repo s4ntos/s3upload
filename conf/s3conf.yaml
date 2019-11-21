@@ -1,0 +1,10 @@
+Region: "eu-central-1"
+Access_key : "ACCESSKEY"
+Secret_key : "SECRETKEY"
+Bucket: "BUCKET"
+Folder: "upload_folder"
+EncryptionKey: "000000000000000000000000000"
+Locations : [ "test_folder" ]
+Filter : ".*.csv"
+Upload_existing : true
+RunOnce : true
